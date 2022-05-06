@@ -1,0 +1,4 @@
+* @ademoladebayo
+*.js @ademoladebayo
+*.yml @ademoladebayo
+/public/ @ademoladebayo
