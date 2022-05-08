@@ -50,7 +50,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GHA_TOKEN }}
 
-
       - name: Deploy to Staging
         if: github.event_name == 'push'
         run: npx surge --project ./build --domain https://laughable-zephyr.surge.sh/
