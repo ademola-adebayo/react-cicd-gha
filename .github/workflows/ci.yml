@@ -30,6 +30,7 @@ jobs:
         with:
           node-version: "16.x"
       - run: npm ci
+      - run: npm run format
       - run: npm run format:check
       - run: npm test -- --coverage
         env:
@@ -49,6 +50,11 @@ jobs:
         with:
           name: build
           path: build
+      - name: ZIP Assets
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          zip -r build.zip ./build
+          zip -r coverage.zip ./coverage
 
       - name: Create a Release
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
