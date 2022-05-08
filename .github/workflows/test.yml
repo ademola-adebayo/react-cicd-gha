@@ -5,6 +5,17 @@ jobs:
     runs-on:  ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: ./.github/actions/issue
+        id: issue
+        with:
+          token: ${{ secrets.GHA_TOKEN }}
+          title: Title 
+          body: Body 
+          assignees: |
+            ademola-adebayo
+            cashewhand
+      - run: |
+         echo ${{ seps.issue.outputs.issue }}
       - uses: ./.github/actions/hello
         id: hello
         with:
