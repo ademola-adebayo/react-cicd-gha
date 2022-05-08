@@ -68,11 +68,11 @@ jobs:
       - name: Deploy to Staging
         if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
         run: npx surge --project ./build --domain https://laughable-zephyr.surge.sh/
-        
+
       - name: Deploy to Production
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: npx surge --project ./build --domain https://sleepy-team.surge.sh/
-        
+
       - name: Open Issue
         if: failure() && github.event_name == 'pull_request'
         run: |
