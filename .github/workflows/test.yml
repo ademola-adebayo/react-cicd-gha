@@ -15,7 +15,7 @@ jobs:
             ademola-adebayo
             cashewhand
       - run: |
-         echo ${{ seps.issue.outputs.issue }}
+         echo ${{ steps.issue.outputs.issue }}
       - uses: ./.github/actions/hello
         id: hello
         with:
