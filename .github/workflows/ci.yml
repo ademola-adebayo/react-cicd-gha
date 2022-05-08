@@ -71,6 +71,4 @@ jobs:
         
       - name: Deploy to Production
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: npx surge --project ./build --domain https://sleepy-team.surge.sh/
-        
-
+        run: npx surge --project ./build --domain https://sleepy-team.surge.sh/ 
