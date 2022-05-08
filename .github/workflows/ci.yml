@@ -9,6 +9,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      checks: write
+      contents: write
+      deployments: write
+      pull-requests: write
+      repository-projects: write
     steps:
       - uses: actions/checkout@v2
       - name: Cache node_modules
