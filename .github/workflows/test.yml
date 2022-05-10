@@ -25,14 +25,15 @@ jobs:
       - run: |
           echo ${{ steps.issue.outputs.issue }}
       
-      # - name: Run Hello
-      #   uses: ./.github/actions/hello
-      #   id: hello
-      #   with:
-      #     who-to-greet: "World"
-      #   run: |
-      #     echo "Time: ${{ steps.hello.outputs.time }}"
-      #     echo $HELLO
+      - name: Run Hello
+        uses: ./.github/actions/hello
+        id: hello
+        with:
+          who-to-greet: "World"
+          
+      - run: |
+          echo "Time: ${{ steps.hello.outputs.time }}"
+          echo $HELLO
 
-      # - name: Check Files
-      #   uses: ./.github/actions/check
+      - name: Check Files
+        uses: ./.github/actions/check
