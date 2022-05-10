@@ -39,4 +39,4 @@ jobs:
         uses: ./.github/actions/check
 
       - name: Adding markdown
-        run: echo ‘### Hello world! :rocket:’ >> $GITHUB_STEP_SUMMARY
+        run: echo '### Hello world! :rocket:' >> $GITHUB_STEP_SUMMARY
