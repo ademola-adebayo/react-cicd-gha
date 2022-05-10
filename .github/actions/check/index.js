@@ -25,4 +25,13 @@ async function checkFileExistence(path) {
     });
 }
 
+(async () => {
+  try {
+    checkFileExistence("README.md");
+    checkFileExistence("LICENSE");
+  } catch (error) {
+    core.setFailed(error.message);
+  }
+})();
+
 run();
