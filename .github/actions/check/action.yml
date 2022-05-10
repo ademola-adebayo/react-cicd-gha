@@ -2,4 +2,4 @@ name: "File Check Action"
 description: "An action that checks if the LICENSE and README.md files exists"
 runs:
   using: "node16"
-  main: "index.js"
+  main: "dist/index.js"
