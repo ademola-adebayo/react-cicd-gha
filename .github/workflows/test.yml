@@ -20,7 +20,8 @@ jobs:
           assignees: |
             ademola-adebayo
             cashewhand
-        run: |
+            
+      - run: |
           echo ${{ steps.issue.outputs.issue }}
       
       # - name: Run Hello
