@@ -1,5 +1,10 @@
 name: Testing Custom Actions
-on: push
+on: 
+  workflow_dispatch:
+    
+  push:
+    branches: [ main ]
+
 jobs:
   testing-action:
     runs-on:  ubuntu-latest
@@ -23,3 +28,16 @@ jobs:
       - run: |
           echo "Time: ${{ steps.hello.outputs.time }}"
           echo $HELLO
+
+  check-file:
+    runs-on:  ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: File Check
+        description: "checks if the README and LICENsE files exists"
+        runs:
+          using: 'node16'
+          main: '../../index.js'
+    
+  
