@@ -1,6 +1,7 @@
-const core = require('@actions/core');const github = require('@actions/github');
+const core = require('@actions/core');
+const github = require('@actions/github');
 
-(async () => {    
+(async function run () {    
   try {        
     core.notice('Check File Action called!!!');    
   } catch (error) {        

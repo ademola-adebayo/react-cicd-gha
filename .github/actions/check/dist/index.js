@@ -5389,9 +5389,10 @@ module.exports = require("util");
 /***/ 687:
 /***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
 
-const core = __webpack_require__(470);const github = __webpack_require__(469);
+const core = __webpack_require__(470);
+const github = __webpack_require__(469);
 
-(async () => {    
+(async function run () {    
   try {        
     core.notice('Check File Action called!!!');    
   } catch (error) {        
