@@ -15,12 +15,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GHA_TOKEN }}
         with:
+          token: ${{ secrets.GHA_TOKEN }}
           title: Title 
           body: Body 
           assignees: |
             ademola-adebayo
             cashewhand
-            
+
       - run: |
           echo ${{ steps.issue.outputs.issue }}
       
