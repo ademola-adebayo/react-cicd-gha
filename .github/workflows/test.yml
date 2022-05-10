@@ -1,11 +1,11 @@
 name: Testing Custom Actions
-on: 
-  workflow_dispatch: 
+on:
+  workflow_dispatch:
   push:
 
 jobs:
   testing-action:
-    runs-on:  ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
@@ -16,15 +16,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GHA_TOKEN }}
         with:
           token: ${{ secrets.GHA_TOKEN }}
-          title: Title 
-          body: Body 
+          title: Title
+          body: Body
           assignees: |
             ademola-adebayo
             cashewhand
 
       - run: |
           echo ${{ steps.issue.outputs.issue }}
-      
+
       - name: Run Hello
         uses: ./.github/actions/hello
         id: hello

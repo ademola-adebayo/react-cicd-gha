@@ -3,7 +3,7 @@ author: Demola Adebayo
 description: Some description
 inputs:
   who-to-greet:
-    description: 'Who to greet'
+    description: "Who to greet"
     required: true
     default: Demola
 outputs:

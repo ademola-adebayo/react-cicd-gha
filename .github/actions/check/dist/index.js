@@ -5391,13 +5391,33 @@ module.exports = require("util");
 
 const core = __webpack_require__(470);
 const github = __webpack_require__(469);
+const fs = __webpack_require__(747);
+const { connected } = __webpack_require__(765);
 
-(async function run () {    
-  try {        
-    core.notice('Check File Action called!!!');    
-  } catch (error) {        
-    core.setFailed(error.message);    
-  }})();
+async function run() {
+  try {
+    core.notice("Check File Action called!!!");
+  } catch (error) {
+    core.setFailed(error.message);
+  }
+}
+
+async function checkFileExistence(path) {
+  return fs.promises
+    .access(path, fs.constants.F_OK)
+    .then(() => {
+      core.info(`${path} exists`);
+
+      return true;
+    })
+    .catch(() => {
+      core.setFailed(`${path} does not exist`);
+      return false;
+    });
+}
+
+run();
+
 
 /***/ }),
 
@@ -5755,6 +5775,13 @@ exports.request = request;
 /***/ (function(module) {
 
 module.exports = require("zlib");
+
+/***/ }),
+
+/***/ 765:
+/***/ (function(module) {
+
+module.exports = require("process");
 
 /***/ }),
 
