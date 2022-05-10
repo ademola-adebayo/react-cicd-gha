@@ -1,7 +1,6 @@
 name: Testing Custom Actions
 on: 
-  workflow_dispatch:
-    
+  workflow_dispatch: 
   push:
     branches: [ main ]
 
@@ -10,34 +9,39 @@ jobs:
     runs-on:  ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ./.github/actions/issue
+
+      - name: Report issues
+        uses: ../actions/issue
         id: issue
+        env:
+          GITHUB_TOKEN: ${{ secrets.GHA_TOKEN }}
         with:
-          token: ${{ secrets.GHA_TOKEN }}
           title: Title 
           body: Body 
           assignees: |
             ademola-adebayo
             cashewhand
-      - run: |
-         echo ${{ steps.issue.outputs.issue }}
-      - uses: ./.github/actions/hello
+        run: |
+          echo ${{ steps.issue.outputs.issue }}
+      
+      - name: Run Hello
+        uses: ../actions/hello
         id: hello
         with:
           who-to-greet: "World"
-      - run: |
+        run: |
           echo "Time: ${{ steps.hello.outputs.time }}"
           echo $HELLO
 
-  check-file:
-    runs-on:  ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
+  # check-file:
+  #   runs-on:  ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
 
-      - name: File Check
-        description: "checks if the README and LICENsE files exists"
-        runs:
-          using: 'node16'
-          main: '../../index.js'
+  #     - name: File Check
+  #       description: "checks if the README and LICENsE files exists"
+  #       runs:
+  #         using: 'node16'
+  #         main: '../../index.js'
     
   
