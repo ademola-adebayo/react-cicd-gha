@@ -10,4 +10,4 @@ jobs:
       - name: Slack Message
         run: |
           echo "New issue created: <${{ github.event.issue.html_url }}|${{
-          github.event.issue.title}}.>"}'
+          github.event.issue.title}}.>"}
