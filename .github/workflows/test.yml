@@ -41,8 +41,10 @@ jobs:
       
       - name: Log Information
         run: |
-          echo "New issue created: <${{ github.event.issue.html_url }}|${{
-          github.event.issue.title}}.>"}
+          echo "repository: ${{ github.repository }}"
+          echo "action name: ${{ github.job}}"
+          echo "started by user: ${{ github.actor }}"
+          echo "time: ${{ github.timestamp }}"
       
       - name: Dump Github context
         env:
