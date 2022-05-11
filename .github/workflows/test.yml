@@ -1,7 +1,8 @@
 name: Testing Custom Actions
 on:
-  workflow_dispatch:
   push:
+    branches: [workflow]
+  workflow_dispatch:
 
 jobs:
   testing-action:
