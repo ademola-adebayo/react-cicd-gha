@@ -17,7 +17,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GHA_TOKEN }}
         with:
           token: ${{ secrets.GHA_TOKEN }}
-          title: Title
+          title: $GITHUB_CONTEXT.actor
           body: Body
           assignees: |
             ademola-adebayo
@@ -49,7 +49,7 @@ jobs:
         env:
           RUNNER_CONTEXT: ${{ toJson(runner) }}
         run: echo "$RUNNER_CONTEXT"
-        
+
       - name: Dump strategy context
         env:
           STRATEGY_CONTEXT: ${{ toJson(strategy) }}
