@@ -17,7 +17,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GHA_TOKEN }}
         with:
           token: ${{ secrets.GHA_TOKEN }}
-          title: ${{ github.actor }}
+          title: Demola
           body: Body
           assignees: |
             ademola-adebayo
@@ -38,6 +38,11 @@ jobs:
 
       - name: Check Files
         uses: ./.github/actions/check
+      
+      - name: Log Information
+        run: |
+          echo "New issue created: <${{ github.event.issue.html_url }}|${{
+          github.event.issue.title}}.>"}
       
       - name: Dump Github context
         env:
