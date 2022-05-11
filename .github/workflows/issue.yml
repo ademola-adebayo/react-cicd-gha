@@ -8,4 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Slack Message
-        run: echo "New issue created:"
+        run: |
+          echo "New issue created: <${{ github.event.issue.html_url }}|${{
+          github.event.issue.title}}.>"}
