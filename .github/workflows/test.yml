@@ -44,7 +44,7 @@ jobs:
           echo "repository: ${{ github.repository }}"
           echo "action name: ${{ github.job}}"
           echo "started by user: ${{ github.actor }}"
-          echo "time: ${{ github.timestamp }}"
+          echo "time: ${{ github.event.head_commit.timestamp }}"
       
       - name: Dump Github context
         env:
