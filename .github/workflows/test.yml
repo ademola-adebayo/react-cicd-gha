@@ -35,7 +35,7 @@ jobs:
       - run: |
           echo "Time: ${{ steps.hello.outputs.time }}"
           echo $HELLO
-      
+
       - name: Run Custom Action
         uses: ./.github/actions/custom
         id: custom
@@ -50,17 +50,16 @@ jobs:
         run: |
           echo "Repo Name: ${{ steps.custom.outputs.repo }}"
 
-
       - name: Check Files
         uses: ./.github/actions/check
-      
+
       - name: Log Information
         run: |
           echo "repository: ${{ github.repository }}"
           echo "action name: ${{ github.job}}"
           echo "started by user: ${{ github.actor }}"
           echo "time: ${{ github.event.head_commit.timestamp }}"
-      
+
       - name: Dump Github context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}

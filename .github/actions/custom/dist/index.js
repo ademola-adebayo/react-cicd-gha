@@ -3946,21 +3946,25 @@ const github = __webpack_require__(469);
 
   // const assignees = core.getInput("assignees");
 
-  const octokit = github.getOctokit(token);
+  // const octokit = github.getOctokit(token);
 
-  const response = await octokit.rest.actions.getWorkflowRunAttempt({
-    owner,
-    repo,
-    run_id,
-    attempt_number
-  });
+  // const response = await octokit.rest.actions.getWorkflowRunAttempt({
+  //   owner,
+  //   repo,
+  //   run_id,
+  //   attempt_number
+  // });
 
-  const { data } = response;
+  // const { data } = response;
 
   const { context = {} } = github;
 
   core.setOutput("DATA", JSON.stringify(data));
   core.setOutput("repo", repo);
+  core.setOutput("owner", owner);
+  core.setOutput("run_id", run_id);
+  core.setOutput("attempt_number", attempt_number);
+
   core.startGroup("Logging github");
   console.log(JSON.stringify(github, null, "\t"));
   core.endGroup();
