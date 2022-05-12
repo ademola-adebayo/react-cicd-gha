@@ -3946,7 +3946,7 @@ const github = __webpack_require__(469);
 
   // const assignees = core.getInput("assignees");
 
-  // const octokit = github.getOctokit(token);
+  const octokit = github.getOctokit(token);
 
   // const response = await octokit.rest.actions.getWorkflowRunAttempt({
   //   owner,
@@ -3971,6 +3971,10 @@ const github = __webpack_require__(469);
 
   core.startGroup("Logging github context");
   console.log(JSON.stringify(context, null, "\t"));
+  core.endGroup();
+
+  core.startGroup("Logging github context");
+  console.log(JSON.stringify(octokit, null, "\t"));
   core.endGroup();
 })();
 

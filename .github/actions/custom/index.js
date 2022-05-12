@@ -10,7 +10,7 @@ const github = require("@actions/github");
 
   // const assignees = core.getInput("assignees");
 
-  // const octokit = github.getOctokit(token);
+  const octokit = github.getOctokit(token);
 
   // const response = await octokit.rest.actions.getWorkflowRunAttempt({
   //   owner,
@@ -35,5 +35,9 @@ const github = require("@actions/github");
 
   core.startGroup("Logging github context");
   console.log(JSON.stringify(context, null, "\t"));
+  core.endGroup();
+
+  core.startGroup("Logging github context");
+  console.log(JSON.stringify(octokit, null, "\t"));
   core.endGroup();
 })();
