@@ -23,7 +23,7 @@ const github = require("@actions/github");
 
   const { context = {} } = github;
 
-  core.setOutput("DATA", JSON.stringify(data));
+  // core.setOutput("DATA", JSON.stringify(data));
   core.setOutput("repo", repo);
   core.setOutput("owner", owner);
   core.setOutput("run_id", run_id);
