@@ -35,6 +35,21 @@ jobs:
       - run: |
           echo "Time: ${{ steps.hello.outputs.time }}"
           echo $HELLO
+      
+      - name: Run Custom Action
+        uses: ./.github/actions/custom
+        id: custom
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.repository }}
+          run_id: ${{ github.run_id }}
+          attempt_number: ${{ github.run_attempt }}
+
+      - name: Spit out outputs
+        run: |
+          echo "Repo Name: ${{ steps.custom.outputs.repo }}"
+
 
       - name: Check Files
         uses: ./.github/actions/check

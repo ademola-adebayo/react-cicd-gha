@@ -1,0 +1,35 @@
+name: "Thank you action"
+description: 'Say "Thank You" to new request'
+author: "Demola Adebayo"
+
+inputs:
+  token:
+    description: "GithHub token"
+    required: true
+  owner:
+    description: "The account owner of the repository. "
+    required: true
+  repo:
+    description: "The name of the repository. The name is not case sensitive."
+    required: true
+  run_id:
+    description: "The unique identifier of the workflow run"
+    required: true
+  attempt_number:
+    description: "The attempt number of the workflow run."
+    required: true
+outputs:
+  status:
+    description: "Status of action"
+  conclusion:
+    description: "Has it concluded?"
+  started_at:
+    description: "Time of Commencement"
+  completed_at:
+    description: "Time of completion"
+runs:
+  using: "node16"
+  main: "dist/index.js"
+branding:
+  color: "purple"
+  icon: "clock"
