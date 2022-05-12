@@ -1,7 +1,11 @@
 name: Testing Custom Actions
 on:
   push:
-    branches: [workflow]
+    branches:
+      - workflow
+  pull_request:
+    branches:
+      - workflow
   workflow_dispatch:
 
 permissions:
