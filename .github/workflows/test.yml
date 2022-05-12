@@ -5,8 +5,14 @@ on:
   workflow_dispatch:
 
 permissions:
+  actions: read
   checks: write
   contents: read
+  deployments: read
+  packages: read
+  repository-projects: read
+  security-events: read
+  statuses: read
 
 jobs:
   testing-action:
