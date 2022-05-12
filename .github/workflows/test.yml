@@ -49,6 +49,9 @@ jobs:
       - name: Spit out outputs
         run: |
           echo "Repo Name: ${{ steps.custom.outputs.repo }}"
+          echo "Owner: ${{ steps.custom.outputs.owner }}"
+          echo "Run ID: ${{ steps.custom.outputs.run_id }}"
+          echo "Attempt Count: ${{ steps.custom.outputs.attempt_number }}"
 
       - name: Check Files
         uses: ./.github/actions/check
