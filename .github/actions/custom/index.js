@@ -36,8 +36,4 @@ const github = require("@actions/github");
   core.startGroup("Logging github context");
   console.log(JSON.stringify(context, null, "\t"));
   core.endGroup();
-
-  core.startGroup("Logging github context");
-  console.log(JSON.stringify(octokit, null, "\t"));
-  core.endGroup();
 })();

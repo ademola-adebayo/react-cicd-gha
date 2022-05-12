@@ -4,6 +4,10 @@ on:
     branches: [workflow]
   workflow_dispatch:
 
+permissions:
+  checks: write
+  contents: read
+
 jobs:
   testing-action:
     runs-on: ubuntu-latest
@@ -62,6 +66,11 @@ jobs:
           echo "action name: ${{ github.job}}"
           echo "started by user: ${{ github.actor }}"
           echo "time: ${{ github.event.head_commit.timestamp }}"
+
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action/composite@v1
+        with:
+          files: artifacts/**/*.xml
 
       - name: Dump Github context
         env:
