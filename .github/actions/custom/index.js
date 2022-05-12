@@ -10,22 +10,17 @@ const github = require("@actions/github");
 
   const octokit = github.getOctokit(token);
 
-  // const response = await octokit.rest.actions.getWorkflowRunAttempt({
-  //   owner,
-  //   repo,
-  //   run_id,
-  //   attempt_number,
-  // });
+  const response = await octokit.rest.actions.getWorkflowRunAttempt({
+    owner,
+    repo,
+    run_id,
+    attempt_number,
+  });
 
   // const { data } = response;
 
   const { context = {} } = github;
-  const { pull_request } = context.payload;
-  const result = await octokit.rest.issues.createComment({
-    ...context.repo,
-    issue_number: pull_request.number,
-    body: "Thank you for submitting a pull request! We will try to review this as soon as we can.",
-  });
+
   // core.setOutput("DATA", JSON.stringify(data));
   core.setOutput("repo", repo);
   core.setOutput("owner", owner);
