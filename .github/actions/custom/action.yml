@@ -4,7 +4,7 @@ author: "Demola Adebayo"
 
 inputs:
   token:
-    description: "GithHub token"
+    description: "GitHub token"
     required: true
   owner:
     description: "The account owner of the repository. "

@@ -43,6 +43,8 @@ jobs:
       - name: Run Custom Action
         uses: ./.github/actions/custom
         id: custom
+        env:
+          GITHUB_TOKEN: ${{ secrets.GHA_TOKEN }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           owner: ${{ github.repository_owner }}
