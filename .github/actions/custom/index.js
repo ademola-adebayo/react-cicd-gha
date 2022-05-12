@@ -12,12 +12,12 @@ const github = require("@actions/github");
 
   const octokit = github.getOctokit(token);
 
-  // const response = await octokit.rest.actions.getWorkflowRunAttempt({
-  //   owner,
-  //   repo,
-  //   run_id,
-  //   attempt_number
-  // });
+  const response = await octokit.rest.actions.getWorkflowRunAttempt({
+    owner,
+    repo,
+    run_id,
+    attempt_number,
+  });
 
   // const { data } = response;
 
