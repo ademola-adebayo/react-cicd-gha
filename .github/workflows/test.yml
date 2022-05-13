@@ -9,14 +9,14 @@ on:
   workflow_dispatch:
 
 permissions:
-  actions: read
+  # actions: read
   checks: write
   contents: read
-  deployments: read
-  packages: read
-  repository-projects: read
-  security-events: read
-  statuses: read
+  # deployments: read
+  # packages: read
+  # repository-projects: read
+  # security-events: read
+  # statuses: read
 
 jobs:
   testing-action:
@@ -53,22 +53,21 @@ jobs:
         uses: ./.github/actions/custom
         id: custom
         with:
-          GITHUB_TOKEN: ${{ secrets.GHA_TOKEN }}
+          token: ${{ secrets.GHA_TOKEN }}
           owner: ${{ github.repository_owner }}
           repo: ${{ github.repository }}
           run_id: ${{ github.run_id }}
           attempt_number: ${{ github.run_attempt }}
 
-      - name: Big Data
-        run: |
-          echo ${{ steps.custom.outputs.big_data }}
-
       - name: Spit out outputs
         run: |
           echo "Repo Name: ${{ steps.custom.outputs.repo }}"
-          echo "Owner: ${{ steps.custom.outputs.owner }}"
-          echo "Run ID: ${{ steps.custom.outputs.run_id }}"
-          echo "Attempt Count: ${{ steps.custom.outputs.attempt_number }}"
+          echo "Repo Name: ${{ steps.custom.outputs.owner }}"
+          echo "Repo Name: ${{ steps.custom.outputs.run_id }}"
+
+      # - name: Big Data
+      #   run: |
+      #     echo ${{ steps.custom.outputs.big_data }}
 
       - name: Check Files
         uses: ./.github/actions/check

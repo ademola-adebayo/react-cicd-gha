@@ -3,7 +3,7 @@ description: 'Say "Thank You" to new request'
 author: "Demola Adebayo"
 
 inputs:
-  GITHUB_TOKEN:
+  token:
     description: "GitHub token"
     required: true
   owner:
