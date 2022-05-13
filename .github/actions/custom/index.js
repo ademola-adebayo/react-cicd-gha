@@ -17,16 +17,16 @@ async function run() {
     //   run_id,
     //   attempt_number,
     // });
-    const octokit = new Octokit({ auth: token });
-    const response = await octokit.request(
-      "GET /repos/${owner}/${repo}/actions/runs/${run_id}/attempts/${attempt_number}",
-      {
-        owner,
-        repo,
-        run_id,
-        attempt_number,
-      }
-    );
+    // const octokit = new Octokit({ auth: token });
+    // const response = await octokit.request(
+    //   "GET /repos/${owner}/${repo}/actions/runs/${run_id}/attempts/${attempt_number}",
+    //   {
+    //     owner,
+    //     repo,
+    //     run_id,
+    //     attempt_number,
+    //   }
+    // );
     console.log("OWNER =>", owner);
     console.log("REPO =>", repo);
     console.log("RUN ID =>", run_id);
