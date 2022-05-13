@@ -6,11 +6,6 @@ on:
   pull_request:
     branches:
       - workflow
-  workflow_run:
-    workflows: ["testing-action"]
-    types: [requested]
-    branches:
-      - workflow
   workflow_dispatch:
 
 permissions:

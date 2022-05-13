@@ -3936,7 +3936,7 @@ exports.RequestError = RequestError;
 
 const core = __webpack_require__(470);
 const github = __webpack_require__(469);
-
+const { Octokit } = __webpack_require__(448);
 (async () => {
   try {
     const token = core.getInput("GITHUB_TOKEN");
@@ -3945,14 +3945,23 @@ const github = __webpack_require__(469);
     const run_id = core.getInput("run_id");
     const attempt_number = core.getInput("attempt_number");
 
-    const octokit = github.getOctokit(token);
-
-    const response = await octokit.rest.actions.getWorkflowRunAttempt({
-      owner,
-      repo,
-      run_id,
-      attempt_number,
-    });
+    // const octokit = github.getOctokit(token);
+    // const response = await octokit.rest.actions.getWorkflowRunAttempt({
+    //   owner,
+    //   repo,
+    //   run_id,
+    //   attempt_number,
+    // });
+    const octokit = new Octokit({ auth: token });
+    const response = await octokit.request(
+      "GET /repos/{owner}/{repo}/actions/runs/{run_id}/attempts/{attempt_number}",
+      {
+        owner,
+        repo,
+        run_id,
+        attempt_number,
+      }
+    );
 
     const { context } = github;
 
