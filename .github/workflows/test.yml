@@ -50,24 +50,24 @@ jobs:
           echo "Time: ${{ steps.hello.outputs.time }}"
           echo $HELLO
 
-      - name: Run Custom Action
-        uses: ./.github/actions/custom
-        id: custom
-        env:
-          GITHUB_TOKEN: ${{ secrets.GHA_TOKEN }}
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          owner: ${{ github.repository_owner }}
-          repo: ${{ github.repository }}
-          run_id: ${{ github.run_id }}
-          attempt_number: ${{ github.run_attempt }}
+      # - name: Run Custom Action
+      #   uses: ./.github/actions/custom
+      #   id: custom
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GHA_TOKEN }}
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     owner: ${{ github.repository_owner }}
+      #     repo: ${{ github.repository }}
+      #     run_id: ${{ github.run_id }}
+      #     attempt_number: ${{ github.run_attempt }}
 
-      - name: Spit out outputs
-        run: |
-          echo "Repo Name: ${{ steps.custom.outputs.repo }}"
-          echo "Owner: ${{ steps.custom.outputs.owner }}"
-          echo "Run ID: ${{ steps.custom.outputs.run_id }}"
-          echo "Attempt Count: ${{ steps.custom.outputs.attempt_number }}"
+      # - name: Spit out outputs
+      #   run: |
+      #     echo "Repo Name: ${{ steps.custom.outputs.repo }}"
+      #     echo "Owner: ${{ steps.custom.outputs.owner }}"
+      #     echo "Run ID: ${{ steps.custom.outputs.run_id }}"
+      #     echo "Attempt Count: ${{ steps.custom.outputs.attempt_number }}"
 
       - name: Check Files
         uses: ./.github/actions/check
