@@ -3947,12 +3947,15 @@ const github = __webpack_require__(469);
 
     const octokit = github.getOctokit(token);
 
-    const response = await octokit.rest.actions.getWorkflowRunAttempt({
-      owner,
-      repo,
-      run_id,
-      attempt_number,
-    });
+    const response = await octokit.rest.actions.getWorkflowRunAttempt(
+      {
+        owner,
+        repo,
+        run_id,
+        attempt_number,
+      },
+      "https://api.github.com/repos/{owner}/{repo}/actions/runs/{run_id}/attempts/{attempt_number}"
+    );
 
     const { context } = github;
 
