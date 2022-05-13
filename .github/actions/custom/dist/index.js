@@ -3947,15 +3947,14 @@ const github = __webpack_require__(469);
 
     const octokit = github.getOctokit(token);
 
-    const response = await octokit.rest.actions.getWorkflowRunAttempt(
-      {
-        owner,
-        repo,
-        run_id,
-        attempt_number
-      },
-      "application/vnd.github.v3+json"
-    );
+    // const response = await octokit.rest.actions.getWorkflowRunAttempt(
+    //   {
+    //     owner,
+    //     repo,
+    //     run_id,
+    //     attempt_number
+    //   }
+    // );
 
     const { context } = github;
 
