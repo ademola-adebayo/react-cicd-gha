@@ -53,13 +53,14 @@ jobs:
 
       - run: |
           echo "Time: ${{ steps.hello.outputs.time }}"
-          echo $HELLO
 
       - name: Run Custom Action
         uses: ./.github/actions/custom
         id: custom
+        env:
+          GITHUB_TOKEN: ${{ secrets.GHA_TOKEN }}
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GHA_TOKEN }}
           owner: ${{ github.repository_owner }}
           repo: ${{ github.repository }}
           run_id: ${{ github.run_id }}
