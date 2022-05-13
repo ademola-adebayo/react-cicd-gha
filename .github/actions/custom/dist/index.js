@@ -3953,16 +3953,16 @@ async function run() {
     //   run_id,
     //   attempt_number,
     // });
-    // const octokit = new Octokit({ auth: token });
-    // const response = await octokit.request(
-    //   "GET /repos/{owner}/{repo}/actions/runs/{run_id}/attempts/{attempt_number}",
-    //   {
-    //     owner,
-    //     repo,
-    //     run_id,
-    //     attempt_number,
-    //   }
-    // );
+    const octokit = new Octokit({ auth: token });
+    const response = await octokit.request(
+      "GET /repos/{owner}/{repo}/actions/runs/{run_id}/attempts/{attempt_number}",
+      {
+        owner,
+        repo,
+        run_id,
+        attempt_number,
+      }
+    );
     console.log("OWNER =>", owner);
     console.log("REPO =>", repo);
 
@@ -3970,7 +3970,6 @@ async function run() {
 
     // const { context } = github;
 
-    // core.setOutput("DATA", JSON.stringify(data));
     core.setOutput("repo", repo);
     core.setOutput("owner", owner);
     core.setOutput("run_id", run_id);
