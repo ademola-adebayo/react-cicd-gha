@@ -3955,7 +3955,7 @@ async function run() {
     // });
     const octokit = new Octokit({ auth: token });
     const response = await octokit.request(
-      "GET /repos/{owner}/{repo}/actions/runs/{run_id}/attempts/{attempt_number}",
+      "GET /repos/${owner}/${repo}/actions/runs/${run_id}/attempts/${attempt_number}",
       {
         owner,
         repo,
