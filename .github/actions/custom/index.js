@@ -11,21 +11,15 @@ const github = require("@actions/github");
 
     const octokit = github.getOctokit(token);
 
-    // const response = await octokit.rest.actions.getWorkflowRunAttempt(
-    //   {
-    //     owner,
-    //     repo,
-    //     run_id,
-    //     attempt_number
-    //   },
-    //   "application/vnd.github.v3+json"
-    // );
-
-    const result = await octokit.rest.actions.getWorkflowRunUsage({
-      owner,
-      repo,
-      run_id,
-    });
+    const response = await octokit.rest.actions.getWorkflowRunAttempt(
+      {
+        owner,
+        repo,
+        run_id,
+        attempt_number
+      },
+      "application/vnd.github.v3+json"
+    );
 
     const { context } = github;
 
@@ -34,8 +28,6 @@ const github = require("@actions/github");
     core.setOutput("owner", owner);
     core.setOutput("run_id", run_id);
     core.setOutput("attempt_number", attempt_number);
-
-    core.setOutput("issue", JSON.stringify(result.data));
 
     core.startGroup("Logging github");
     console.log(JSON.stringify(github, null, "\t"));
