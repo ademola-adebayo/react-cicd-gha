@@ -3946,24 +3946,31 @@ const github = __webpack_require__(469);
 
   const octokit = github.getOctokit(token);
 
-  const response = await octokit.rest.actions.getWorkflowRun(
-    {
-      owner,
-      repo,
-      run_id,
-    },
-    "application/vnd.github.v3+json"
-  );
+  // const response = await octokit.rest.actions.getWorkflowRunAttempt(
+  //   {
+  //     owner,
+  //     repo,
+  //     run_id,
+  //     attempt_number
+  //   },
+  //   "application/vnd.github.v3+json"
+  // );
 
-  // const { data } = response;
+  const result = await octokit.rest.actions.getWorkflowRunUsage({
+    owner,
+    repo,
+    run_id,
+  });
 
-  const { context = {} } = github;
+  const { context } = github;
 
   // core.setOutput("DATA", JSON.stringify(data));
   core.setOutput("repo", repo);
   core.setOutput("owner", owner);
   core.setOutput("run_id", run_id);
   core.setOutput("attempt_number", attempt_number);
+
+  core.setOutput("issue", JSON.stringify(result.data));
 
   core.startGroup("Logging github");
   console.log(JSON.stringify(github, null, "\t"));
