@@ -29,6 +29,8 @@ async function run() {
     );
     console.log("OWNER =>", owner);
     console.log("REPO =>", repo);
+    console.log("RUN ID =>", run_id);
+    console.log("ATTEMPT NUMBER =>", attempt_number);
 
     // console.log(JSON.stringify(response.data, null, "\t"));
 
