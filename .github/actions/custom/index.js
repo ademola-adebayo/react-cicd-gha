@@ -4,7 +4,7 @@ const { Octokit } = require("@octokit/core");
 
 const { context } = require("@actions/github");
 
-const myoctokit = github.getOctokit(token);
+// const myoctokit = github.getOctokit(token);
 
 async function run() {
   try {

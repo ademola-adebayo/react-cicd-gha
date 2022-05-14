@@ -3940,7 +3940,7 @@ const { Octokit } = __webpack_require__(448);
 
 const { context } = __webpack_require__(469);
 
-const myoctokit = github.getOctokit(token);
+// const myoctokit = github.getOctokit(token);
 
 async function run() {
   try {
