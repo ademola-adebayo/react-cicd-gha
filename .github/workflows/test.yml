@@ -44,7 +44,7 @@ jobs:
         uses: ./.github/actions/custom
         id: custom
         with:
-          token: ${{ secrets.GITHUB _TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           owner: ${{ github.repository_owner }}
           repo: ${{ github.repository }}
           run_id: ${{ github.run_id }}
