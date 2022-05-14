@@ -3938,31 +3938,34 @@ const core = __webpack_require__(470);
 const github = __webpack_require__(469);
 const { Octokit } = __webpack_require__(448);
 
+const { context } = __webpack_require__(469);
+const token = core.getInput("token");
+const octokit = github.getOctokit(token);
+
 async function run() {
   try {
-    const token = core.getInput("token");
     const owner = core.getInput("owner");
     const repo = core.getInput("repo");
     const run_id = core.getInput("run_id");
     const attempt_number = core.getInput("attempt_number");
 
-    // const octokit = github.getOctokit(token);
-    // const response = await octokit.rest.actions.getWorkflowRunAttempt({
-    //   owner,
-    //   repo,
-    //   run_id,
-    //   attempt_number,
-    // });
-    const octokit = new Octokit({ auth: token });
-    const response = await octokit.request(
-      "GET /repos/${owner}/${repo}/actions/runs/${run_id}/attempts/${attempt_number}",
-      {
-        owner,
-        repo,
-        run_id,
-        attempt_number,
-      }
-    );
+    const octokit = new github.getOctokit(token);
+    const response = await octokit.rest.actions.getWorkflowRunAttempt({
+      owner,
+      repo,
+      run_id,
+      attempt_number,
+    });
+    // const octokit = new Octokit({ auth: token });
+    // const response = await octokit.request(
+    //   "GET /repos/${owner}/${repo}/actions/runs/${run_id}/attempts/${attempt_number}",
+    //   {
+    //     owner,
+    //     repo,
+    //     run_id,
+    //     attempt_number,
+    //   }
+    // );
     console.log("OWNER =>", owner);
     console.log("REPO =>", repo);
     console.log("RUN ID =>", run_id);
