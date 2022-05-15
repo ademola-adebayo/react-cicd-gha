@@ -19,7 +19,7 @@ jobs:
 
       - name: Run Custom Action
         uses: ./.github/actions/custom
-        id: query-info
+        id: query
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           owner: ${{ github.repository_owner }}
@@ -29,6 +29,7 @@ jobs:
 
       - name: Spit out outputs
         run: |
-          echo "Repo: ${{ steps.query-info.outputs.repo }}"
-          echo "Owner: ${{ steps.query-info.outputs.owner }}"
-          echo "Run Id: ${{ steps.query-info.outputs.run_id }}"
+          echo "Repo: ${{ steps.query.outputs.repo }}"
+          echo "Owner: ${{ steps.query.outputs.owner }}"
+          echo "Run Id: ${{ steps.query.outputs.run_id }}"
+          echo "Response: ${{ steps.query.outputs.response }}"
