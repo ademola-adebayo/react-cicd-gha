@@ -29,7 +29,7 @@ jobs:
 
       - name: Spit out outputs
         run: |
-          echo "Repo: ${{ steps.query.outputs.repo }}"
-          echo "Owner: ${{ steps.query.outputs.owner }}"
-          echo "Run Id: ${{ steps.query.outputs.run_id }}"
-          echo "Response: ${{ steps.query.outputs.response }}"
+          # echo "Status: ${{ steps.query.outputs.status }}"
+          echo "Conclusion: ${{ steps.query.outputs.conclusion }}"
+          echo "completed_at: ${{ steps.query.outputs.completed_at }}"
+          echo "started_at: ${{ steps.query.outputs.started_at }}"
