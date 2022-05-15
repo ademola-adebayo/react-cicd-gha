@@ -46,10 +46,13 @@ async function run() {
     console.log(JSON.stringify(data, null, "\t"));
 
     // core.setOutput("status", status);
-    core.setOutput("conclusion", data.conclusion);
-    core.setOutput("started_at", data.started_at);
-    core.setOutput("completed_at", completed_at.toTimeString());
+    core.setOutput("conclusion", conclusion);
+    core.setOutput("started_at", started_at);
+    core.setOutput("completed_at", completed_at);
+
+    core.startGroup("Logging github");
     core.setOutput("response", JSON.stringify(data));
+    core.endGroup();
 
     core.startGroup("Logging github");
     console.log(JSON.stringify(github, null, "\t"));
