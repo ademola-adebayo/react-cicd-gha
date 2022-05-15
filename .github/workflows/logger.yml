@@ -23,7 +23,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           owner: ${{ github.repository_owner }}
-          repo: ${{ github.event.repository.name }}
+          repo: ${{ github.repository }}
           run_id: ${{ github.run_id }}
           attempt_number: ${{ github.run_attempt }}
 
