@@ -59,6 +59,12 @@ jobs:
       # - run: |
       #     echo "${{ format('{0}/checks?check_run_id={1}', github.event.pull_request._links.html.href, steps.query-jobs.outputs.result) }}"
 
+      - name: Test Summary
+        uses: test-summary/action@v1
+        with:
+          paths: "test/results/**/TEST-*.xml"
+        if: always()
+        
       - name: Check Files
         uses: ./.github/actions/check
 
