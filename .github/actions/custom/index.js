@@ -67,8 +67,8 @@ async function run() {
     //https://api.github.com/repos/{owner}/{repo}/actions/runs/{run_id}/attempts/{attempt_number}
     //headers "Accept: application/vnd.github.v3+json"
 
-    console.log("API CALL =>", resp.data);
-    const { data } = response;
+    console.log("API CALL =>", JSON.stringify(resp.data, null, "\t"));
+    const { data } = resp;
     console.log(JSON.stringify(data, null, "\t"));
 
     // core.setOutput("status", status);
