@@ -1,7 +1,7 @@
 name: Get workflow information
 
 on:
-  pull_request: 
+  pull_request:
 
 permissions:
   actions: read
@@ -9,7 +9,7 @@ permissions:
   contents: read
   issues: read
   pull-requests: write
-  
+
 jobs:
   logger-info:
     runs-on: ubuntu-latest
@@ -19,9 +19,9 @@ jobs:
 
       - name: Run Custom Action
         uses: ./.github/actions/custom
-        id: query-info
+        id: query
         with:
-          token: ${{ secrets.GHA_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           owner: ${{ github.repository_owner }}
           repo: ${{ github.event.repository.name }}
           run_id: ${{ github.run_id }}
@@ -29,6 +29,7 @@ jobs:
 
       - name: Spit out outputs
         run: |
-          echo "Repo: ${{ steps.query-info.outputs.repo }}"
-          echo "Owner: ${{ steps.query-info.outputs.owner }}"
-          echo "Run Id: ${{ steps.query-info.outputs.run_id }}"
+          echo "Repo: ${{ steps.query.outputs.repo }}"
+          echo "Owner: ${{ steps.query.outputs.owner }}"
+          echo "Run Id: ${{ steps.query.outputs.run_id }}"
+          echo "Response: ${{ steps.query.outputs.response }}"
