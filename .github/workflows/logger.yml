@@ -1,0 +1,34 @@
+name: Get workflow information
+
+on:
+  pull_request: 
+
+permissions:
+  actions: read
+  checks: write
+  contents: read
+  issues: read
+  pull-requests: write
+  
+jobs:
+  logger-info:
+    runs-on: ubuntu-latest
+    name: Workflow information i.e start time
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run Custom Action
+        uses: ./.github/actions/custom
+        id: query-info
+        with:
+          token: ${{ secrets.GHA_TOKEN }}
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.event.repository.name }}
+          run_id: ${{ github.run_id }}
+          attempt_number: ${{ github.run_attempt }}
+
+      - name: Spit out outputs
+        run: |
+          echo "Repo: ${{ steps.query-info.outputs.repo }}"
+          echo "Owner: ${{ steps.query-info.outputs.owner }}"
+          echo "Run Id: ${{ steps.query-info.outputs.run_id }}"

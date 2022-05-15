@@ -27,8 +27,7 @@ outputs:
     description: "Time of Commencement"
   completed_at:
     description: "Time of completion"
-  big_data:
-    description: "data tbc"
+
 runs:
   using: "node16"
   main: "dist/index.js"

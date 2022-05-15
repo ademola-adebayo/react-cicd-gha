@@ -118,28 +118,3 @@ jobs:
 
       - name: Adding markdown
         run: echo '### Hello world! :rocket:' >> $GITHUB_STEP_SUMMARY
-
-  # call-to-action:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
-
-  #     - name: Run Custom Action
-  #       uses: ./.github/actions/custom
-  #       id: custom
-  #       with:
-  #         token: ${{ secrets.GHA_TOKEN }}
-  #         owner: ${{ github.repository_owner }}
-  #         repo: ${{ github.event.repository.name }}
-  #         run_id: ${{ github.run_id }}
-  #         attempt_number: ${{ github.run_attempt }}
-
-  #     # - name: Spit out outputs
-  #     #   run: |
-  #     #     echo "Repo: ${{ steps.custom.outputs.repo }}"
-  #     #     echo "Owner: ${{ steps.custom.outputs.owner }}"
-  #     #     echo "Run Id: ${{ steps.custom.outputs.run_id }}"
-
-  #     # - name: Big Data
-  #     #   run: |
-  #     #     echo ${{ steps.custom.outputs.big_data }}
