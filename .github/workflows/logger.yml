@@ -3,6 +3,13 @@ name: Get workflow information
 on:
   pull_request: 
 
+permissions:
+  actions: read
+  checks: write
+  contents: read
+  issues: read
+  pull-requests: write
+  
 jobs:
   logger-info:
     runs-on: ubuntu-latest
