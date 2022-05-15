@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  # actions: read
+  actions: read
   checks: write
   contents: read
   # deployments: read
@@ -44,7 +44,7 @@ jobs:
         uses: actions/github-script@v4
         id: query-jobs
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GHA_TOKEN }}
           script: |
             github.rest.actions.getWorkflowRunAttempt({
               owner: context.repo.owner,
@@ -54,8 +54,8 @@ jobs:
             });
             # console.log(jobs[jobs.length-1].id);
           result-encoding: string
-      - run: |
-          echo "${{ format('{0}/checks?check_run_id={1}', github.event.pull_request._links.html.href, steps.query-jobs.outputs.result) }}"
+      # - run: |
+      #     echo "${{ format('{0}/checks?check_run_id={1}', github.event.pull_request._links.html.href, steps.query-jobs.outputs.result) }}"
 
       - name: Check Files
         uses: ./.github/actions/check
