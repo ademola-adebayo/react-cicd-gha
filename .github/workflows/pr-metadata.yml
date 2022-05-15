@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Annotates pull request with metadata
     steps:
-      - name: Annotate PR
+      - name: Annotate PR must work
         uses: ./.github/actions/pr-metadata
         with:
           owner: ${{ github.repository_owner }}
