@@ -1,7 +1,7 @@
 name: Get workflow information
 
 on:
-  pull_request: 
+  pull_request:
 
 permissions:
   actions: read
@@ -9,7 +9,7 @@ permissions:
   contents: read
   issues: read
   pull-requests: write
-  
+
 jobs:
   logger-info:
     runs-on: ubuntu-latest
@@ -21,7 +21,7 @@ jobs:
         uses: ./.github/actions/custom
         id: query-info
         with:
-          token: ${{ secrets.GHA_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           owner: ${{ github.repository_owner }}
           repo: ${{ github.event.repository.name }}
           run_id: ${{ github.run_id }}
