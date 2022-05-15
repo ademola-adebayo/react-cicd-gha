@@ -43,7 +43,7 @@ async function run() {
     console.log("RUN ID =>", run_id);
     console.log("ATTEMPT NUMBER =>", attempt_number);
 
-    // console.log(JSON.stringify(response, null, "\t"));
+    console.log(JSON.stringify(data, null, "\t"));
 
     // core.setOutput("status", status);
     core.setOutput("conclusion", data.conclusion);
