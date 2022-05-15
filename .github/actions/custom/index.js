@@ -31,7 +31,7 @@ async function run() {
     //   attempt_number,
     // });
 
-    await octokit.rest.actions.getWorkflowRunAttempt({
+    const { data } = await octokit.rest.actions.getWorkflowRunAttempt({
       owner,
       repo,
       run_id,
@@ -46,10 +46,10 @@ async function run() {
     // console.log(JSON.stringify(response, null, "\t"));
 
     // core.setOutput("status", status);
-    core.setOutput("conclusion", conclusion);
-    core.setOutput("started_at", started_at);
-    core.setOutput("completed_at", completed_at);
-    // core.setOutput("response", JSON.stringify(data));
+    core.setOutput("conclusion", data.conclusion);
+    core.setOutput("started_at", data.started_at);
+    core.setOutput("completed_at", completed_at.toTimeString());
+    core.setOutput("response", JSON.stringify(data));
 
     core.startGroup("Logging github");
     console.log(JSON.stringify(github, null, "\t"));
