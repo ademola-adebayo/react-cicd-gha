@@ -62,9 +62,9 @@ jobs:
       - name: Test Summary
         uses: test-summary/action@v1
         with:
-          paths: "test/results/**/TEST-*.xml"
+          paths: "**/src/*.xml"
         if: always()
-        
+
       - name: Check Files
         uses: ./.github/actions/check
 
