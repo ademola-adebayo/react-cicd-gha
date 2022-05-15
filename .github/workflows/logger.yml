@@ -26,7 +26,7 @@ jobs:
         uses: ./.github/actions/custom
         id: query
         with:
-          token: ${{ secrets.GHIA_TOKEN }}
+          token: ${{ secrets.GHA_TOKEN }}
           owner: ${{ github.repository_owner }}
           repo: ${{ github.repository.name }}
           run_id: ${{ github.run_id }}
