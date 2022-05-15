@@ -25,8 +25,6 @@ jobs:
       - name: Run Custom Action
         uses: ./.github/actions/custom
         id: query
-        env:
-          GITHUB_TOKEN: ${{ secrets.GHIA_TOKEN }}
         with:
           token: ${{ secrets.GHIA_TOKEN }}
           owner: ${{ github.repository_owner }}
