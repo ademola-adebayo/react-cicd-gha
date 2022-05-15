@@ -31,10 +31,11 @@ async function run() {
     //   attempt_number,
     // });
 
-    const { data } = await octokit.rest.actions.getWorkflowRun({
+    const response = await octokit.rest.actions.getWorkflowRunAttempt({
       owner,
       repo,
       run_id,
+      attempt_number,
     });
 
     console.log("OWNER =>", owner);
