@@ -2,6 +2,7 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
+// this kickstarts the project
 function App() {
   return (
     <div className="App">
