@@ -10,7 +10,7 @@ jobs:
     name: Annotates pull request with metadata
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: Annotate PR must work
         uses: ./.github/actions/pr-metadata
         with:
