@@ -19,7 +19,40 @@ const main = async () => {
      * will be used to authenticate our request.
      */
     const octokit = new github.getOctokit(token);
+
+    /**
+     * We need to fetch the list of files that were
+     * changed in the Pull Request
+     * and store them in a varible.
+     * We use octokit.paginate() to automatically loop over
+     * all the pages of the reaults.
+     */
+    const { data: changedFiles } = await octokit.rest.pulls.listFiles({
+      owner,
+      repo,
+      pull_number: pr_number,
+    });
+
+    /**
+     * Contains the sum of all the additions, deletions and changes
+     * in all the files in the Pull Request
+     */
+    let diffData = {
+      additions: 0,
+      deletions: 0,
+      changes: 0,
+    };
+
+    diffData = changedFiles.reduce((acc, file) => {
+      acc.additions += file.additions;
+      acc.deletions += file.deletions;
+      acc.changes += file.changes;
+
+      return acc;
+    }, diffData);
   } catch (error) {
     core.setFailed(error.message);
   }
 };
+
+main();
