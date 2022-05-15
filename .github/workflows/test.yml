@@ -42,19 +42,20 @@ jobs:
       - run: |
           echo ${{ steps.issue.outputs.issue }}
 
-      - name: Another way to access
-        uses: actions/github-script@v6
-        id: query-jobs
-        with:
-          # github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: '👋 Thanks for reporting!'
-            })
-          result-encoding: string
+      # - name: Another way to access
+      #   uses: actions/github-script@v6
+      #   id: query-jobs
+      #   with:
+      #     # github-token: ${{ secrets.GITHUB_TOKEN }}
+      #     script: |
+      #       github.rest.issues.createComment({
+      #         issue_number: context.issue.number,
+      #         owner: context.repo.owner,
+      #         repo: context.repo.repo,
+      #         body: '👋 Thanks for reporting!'
+      #       })
+      #     result-encoding: string
+      
       # - run: |
       #     echo "${{ format('{0}/checks?check_run_id={1}', github.event.pull_request._links.html.href, steps.query-jobs.outputs.result) }}"
 
