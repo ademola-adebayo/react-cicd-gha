@@ -40,25 +40,6 @@ jobs:
       - run: |
           echo ${{ steps.issue.outputs.issue }}
 
-      - name: Run Custom Action
-        uses: ./.github/actions/custom
-        id: custom
-        with:
-          token: ${{ secrets.GHA_TOKEN }}
-          owner: ${{ github.repository_owner }}
-          repo: ${{ github.repository }}
-          run_id: ${{ github.run_id }}
-          attempt_number: ${{ github.run_attempt }}
-
-      # - name: Spit out outputs
-      #   run: |
-      #     echo "Repo: ${{ steps.custom.outputs.repo }}"
-      #     echo "Owner: ${{ steps.custom.outputs.owner }}"
-      #     echo "Run Id: ${{ steps.custom.outputs.run_id }}"
-
-      # - name: Big Data
-      #   run: |
-      #     echo ${{ steps.custom.outputs.big_data }}
       - name: Another way to access
         uses: actions/github-script@v4
         id: query-jobs
@@ -71,9 +52,9 @@ jobs:
               attempt_number: ${{ github.attempt_number }},
             });
             # console.log(jobs[jobs.length-1].id);
-          # result-encoding: string
-      # - run: |
-      #     echo "${{ format('{0}/checks?check_run_id={1}', github.event.pull_request._links.html.href, steps.query-jobs.outputs.result) }}"
+          result-encoding: string
+      - run: |
+          echo "${{ format('{0}/checks?check_run_id={1}', github.event.pull_request._links.html.href, steps.query-jobs.outputs.result) }}"
 
       - name: Check Files
         uses: ./.github/actions/check
@@ -113,3 +94,28 @@ jobs:
 
       - name: Adding markdown
         run: echo '### Hello world! :rocket:' >> $GITHUB_STEP_SUMMARY
+
+  # call-to-action:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+
+  #     - name: Run Custom Action
+  #       uses: ./.github/actions/custom
+  #       id: custom
+  #       with:
+  #         token: ${{ secrets.GHA_TOKEN }}
+  #         owner: ${{ github.repository_owner }}
+  #         repo: ${{ github.event.repository.name }}
+  #         run_id: ${{ github.run_id }}
+  #         attempt_number: ${{ github.run_attempt }}
+
+  #     # - name: Spit out outputs
+  #     #   run: |
+  #     #     echo "Repo: ${{ steps.custom.outputs.repo }}"
+  #     #     echo "Owner: ${{ steps.custom.outputs.owner }}"
+  #     #     echo "Run Id: ${{ steps.custom.outputs.run_id }}"
+
+  #     # - name: Big Data
+  #     #   run: |
+  #     #     echo ${{ steps.custom.outputs.big_data }}

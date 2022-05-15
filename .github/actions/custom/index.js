@@ -4,8 +4,6 @@ const { Octokit } = require("@octokit/core");
 
 const { context } = require("@actions/github");
 
-// const myoctokit = github.getOctokit(token);
-
 async function run() {
   try {
     const token = core.getInput("token");
@@ -15,12 +13,12 @@ async function run() {
     const attempt_number = core.getInput("attempt_number");
 
     const octokit = new github.getOctokit(token);
-    await octokit.rest.actions.getWorkflowRunAttempt({
-      owner,
-      repo,
-      run_id,
-      attempt_number,
-    });
+    // await octokit.rest.actions.getWorkflowRunAttempt({
+    //   owner,
+    //   repo,
+    //   run_id,
+    //   attempt_number,
+    // });
 
     console.log("OWNER =>", owner);
     console.log("REPO =>", repo);

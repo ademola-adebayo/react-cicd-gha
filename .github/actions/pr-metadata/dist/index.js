@@ -40,7 +40,7 @@ module.exports =
 /******/ 	// the startup function
 /******/ 	function startup() {
 /******/ 		// Load entry module and return exports
-/******/ 		return __webpack_require__(464);
+/******/ 		return __webpack_require__(627);
 /******/ 	};
 /******/
 /******/ 	// run startup
@@ -3931,57 +3931,6 @@ exports.RequestError = RequestError;
 
 /***/ }),
 
-/***/ 464:
-/***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
-
-const core = __webpack_require__(470);
-const github = __webpack_require__(469);
-const { Octokit } = __webpack_require__(448);
-
-const { context } = __webpack_require__(469);
-
-async function run() {
-  try {
-    const token = core.getInput("token");
-    const owner = core.getInput("owner");
-    const repo = core.getInput("repo");
-    const run_id = core.getInput("run_id");
-    const attempt_number = core.getInput("attempt_number");
-
-    const octokit = new github.getOctokit(token);
-    // await octokit.rest.actions.getWorkflowRunAttempt({
-    //   owner,
-    //   repo,
-    //   run_id,
-    //   attempt_number,
-    // });
-
-    console.log("OWNER =>", owner);
-    console.log("REPO =>", repo);
-    console.log("RUN ID =>", run_id);
-    console.log("ATTEMPT NUMBER =>", attempt_number);
-
-    // console.log(JSON.stringify(data, null, "\t"));
-
-    // core.setOutput("repo", repo);
-    // core.setOutput("owner", owner);
-    // core.setOutput("run_id", run_id);
-    // core.setOutput("attempt_number", attempt_number);
-    // core.setOutput("response", JSON.stringify(response.data));
-
-    core.startGroup("Logging github");
-    console.log(JSON.stringify(github, null, "\t"));
-    core.endGroup();
-  } catch (error) {
-    core.setFailed(error.message);
-  }
-}
-
-run();
-
-
-/***/ }),
-
 /***/ 469:
 /***/ (function(__unusedmodule, exports, __webpack_require__) {
 
@@ -5102,6 +5051,38 @@ module.exports = require("events");
 /***/ (function(module) {
 
 module.exports = require("path");
+
+/***/ }),
+
+/***/ 627:
+/***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
+
+const core = __webpack_require__(470);
+const github = __webpack_require__(469);
+
+const main = async () => {
+  try {
+    /**
+     * We need to fetch all the inputs that were provided to our action
+     * and store them in variables for us to use.
+     */
+    const owner = core.getInput("owner", { required: true });
+    const repo = core.getInput("repo", { required: true });
+    const pr_number = core.getInput("pr_number", { required: true });
+    const token = core.getInput("token", { required: true });
+
+    /**
+     * Now we need to create an instance of Octokit which will use to call
+     * Github's REST API endpoints.
+     * We will pass the token as an argument to the constructor. This token
+     * will be used to authenticate our request.
+     */
+    const octokit = new github.getOctokit(token);
+  } catch (error) {
+    core.setFailed(error.message);
+  }
+};
+
 
 /***/ }),
 
