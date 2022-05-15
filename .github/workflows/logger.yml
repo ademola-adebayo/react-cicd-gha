@@ -28,7 +28,7 @@ jobs:
         with:
           token: ${{ secrets.GHA_TOKEN }}
           owner: ${{ github.repository_owner }}
-          repo: ${{ github.repository.name }}
+          repo: ${{ github.event.repository.name }}
           run_id: ${{ github.run_id }}
           attempt_number: ${{ github.run_attempt }}
 
