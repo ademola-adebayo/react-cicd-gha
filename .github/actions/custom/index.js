@@ -54,22 +54,31 @@ async function run() {
     };
     const resp = await axios(config);
 
-    const response = await octokit.rest.actions.getWorkflowRunAttempt({
-      owner,
-      repo,
-      run_id,
-      attempt_number,
-    });
+    // const response = await octokit.rest.actions.getWorkflowRunAttempt({
+    //   owner,
+    //   repo,
+    //   run_id,
+    //   attempt_number,
+    // });
 
     console.log("OWNER =>", owner);
     console.log("REPO =>", repo);
     console.log("RUN ID =>", run_id);
     console.log("ATTEMPT NUMBER =>", attempt_number);
-    console.log(
-      "URL",
-      `https://api.github.com/repos/${{ owner }}/${{ repo }}/actions/runs/${{ run_id }}/attempts/${{ attempt_number }}`
-    );
+    console.log("URL",`https://api.github.com/repos/${{ owner }}/${{ repo }}/actions/runs/${{ run_id}}/attempts/${{ attempt_number }}`);
 
+    const Octokit = new Octokit({
+      auth: `${{ token }}`,
+    });
+
+    await Octokit.request(
+      `GET /repos/${{ owner }}/${{ repo }}/actions/runs/${{ run_id }}`,
+      {
+        owner,
+        repo,
+        run_id,
+      }
+    );
     //https://api.github.com/repos/{owner}/{repo}/actions/runs/{run_id}/attempts/{attempt_number}
     //headers "Accept: application/vnd.github.v3+json"
 
@@ -77,13 +86,13 @@ async function run() {
     const { data } = resp;
     console.log(JSON.stringify(data, null, "\t"));
 
-    // core.setOutput("status", status);
+    core.setOutput("html_url", html_url);
     core.setOutput("conclusion", conclusion);
     core.setOutput("started_at", started_at);
     core.setOutput("completed_at", completed_at);
 
     core.startGroup("Logging status");
-    core.setOutput("response", JSON.stringify(response.data, null, "\t"));
+    core.setOutput(JSON.stringify(data, null, "\t"));
     core.endGroup();
 
     core.startGroup("Logging github");
