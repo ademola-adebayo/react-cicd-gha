@@ -19,6 +19,8 @@ inputs:
     description: "The attempt number of the workflow run."
     required: true
 outputs:
+  html_url:
+    description: "html url"
   status:
     description: "Status of action"
   conclusion:

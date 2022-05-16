@@ -22,30 +22,33 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Inspect context
-        run: |
-          echo "The github context is:"
-          echo "${{ toJson(github) }}"
-          echo ""
-          echo "The job context is:"
-          echo "${{ toJson(job) }}"
-          echo ""
-          echo "The steps context is:"
-          echo "${{ toJson(steps) }}"
-          echo ""
-          echo "The runner context is:"
-          echo "${{ toJson(runner) }}"
-          echo ""
-          echo "The strategy context is:"
-          echo "${{ toJson(strategy) }}"
-          echo ""
-          echo "The matrix context is:"
-          echo "${{ toJson(matrix) }}"
-          echo This workflow on ${{ github.repository }} was started by ${{ github.actor }}
+      # - name: Inspect context
+      #   run: |
+      #     echo "The github context is:"
+      #     echo "${{ toJson(github) }}"
+      #     echo ""
+      #     echo "The job context is:"
+      #     echo "${{ toJson(job) }}"
+      #     echo ""
+      #     echo "The steps context is:"
+      #     echo "${{ toJson(steps) }}"
+      #     echo ""
+      #     echo "The runner context is:"
+      #     echo "${{ toJson(runner) }}"
+      #     echo ""
+      #     echo "The strategy context is:"
+      #     echo "${{ toJson(strategy) }}"
+      #     echo ""
+      #     echo "The matrix context is:"
+      #     echo "${{ toJson(matrix) }}"
+      #     echo This workflow on ${{ github.repository }} was started by ${{ github.actor }}
 
-      - name: example job
-        run: |
-          echo ${{ github.job }}
+      # - name: List Workflow Run
+      #   id: gotit
+      #   run: |
+      #     `curl \
+      #      -H "Accept: application/vnd.github.v3+json" \
+      #      https://api.github.com/repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/actions/workflows/WORKFLOW_ID/runs`
 
       - name: Calculate Workflow run
         id: display
@@ -55,19 +58,19 @@ jobs:
           https://api.github.com/repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/actions/runs/${{ github.run_id }}`
           echo "::set-output name=content::$MY_OUTPUT"
 
-      - name: Run Custom Action
-        uses: ./.github/actions/custom
-        id: query
-        with:
-          token: ${{ secrets.GHA_TOKEN }}
-          owner: ${{ github.repository_owner }}
-          repo: ${{ github.event.repository.name }}
-          run_id: ${{ github.run_id }}
-          attempt_number: ${{ github.run_attempt }}
+      # - name: Run Custom Action
+      #   uses: ./.github/actions/custom
+      #   id: query
+      #   with:
+      #     token: ${{ secrets.GHA_TOKEN }}
+      #     owner: ${{ github.repository_owner }}
+      #     repo: ${{ github.event.repository.name }}
+      #     run_id: ${{ github.run_id }}
+      #     attempt_number: ${{ github.run_attempt }}
 
       - name: Spit out outputs
         run: |
-          # echo "Status: ${{ steps.query.outputs.status }}"
-          echo "Conclusion: ${{ steps.query.outputs.conclusion }}"
-          echo "completed_at: ${{ steps.query.outputs.completed_at }}"
-          echo "started_at: ${{ steps.query.outputs.started_at }}"
+          echo "HTML_URL: ${{ steps.display.outputs.html_url }}"
+          echo "Conclusion: ${{ steps.display.outputs.conclusion }}"
+          echo "completed_at: ${{ steps.display.outputs.completed_at }}"
+          echo "started_at: ${{ steps.display.outputs.started_at }}"
