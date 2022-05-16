@@ -56,7 +56,7 @@ jobs:
 
       - name: Cough out
         run: |
-          echo "RESULT => ${{ steps.gotit.outputs.stdout}}"
+          echo "RESULT => ${{ steps.gotit.outputs.content }}"
 
       # - name: Workflow Job API
       #   id: callout
