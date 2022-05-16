@@ -70,7 +70,7 @@ jobs:
 
       - name: Spit out outputs
         run: |
-          echo "HTML_URL: ${{ steps.query.outputs.html_url }}"
-          echo "Conclusion: ${{ steps.query.outputs.conclusion }}"
-          echo "completed_at: ${{ steps.query.outputs.completed_at }}"
-          echo "started_at: ${{ steps.query.outputs.started_at }}"
+          echo "HTML_URL: ${{ steps.display.outputs.html_url }}"
+          echo "Conclusion: ${{ steps.display.outputs.conclusion }}"
+          echo "completed_at: ${{ steps.display.outputs.completed_at }}"
+          echo "started_at: ${{ steps.display.outputs.started_at }}"
