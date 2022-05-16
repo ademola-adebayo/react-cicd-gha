@@ -1,6 +1,6 @@
 const core = require("@actions/core");
 const github = require("@actions/github");
-const axios = require("axios");
+const axios = require("axios").default;
 
 const { Octokit } = require("@octokit/core");
 
@@ -41,11 +41,11 @@ async function run() {
     //   run_id,
     //   attempt_number,
     // });
+
     const config = {
       method: "get",
-      url: `https://api.github.com/repos/${owner}/${{ repo }}/actions/runs/${{
-        run_id,
-      }}/attempts/${{ attempt_number }}`,
+      url: `https://api.github.com/repos/${{ owner }}/${{
+        repo }}/actions/runs/${{ run_id }}`,
       headers: {
         // Authorization: `Bearer ${token}`,
         // "Content-Type": "application/json",
@@ -65,20 +65,16 @@ async function run() {
     console.log("REPO =>", repo);
     console.log("RUN ID =>", run_id);
     console.log("ATTEMPT NUMBER =>", attempt_number);
-    console.log("URL",`https://api.github.com/repos/${{ owner }}/${{ repo }}/actions/runs/${{ run_id}}/attempts/${{ attempt_number }}`);
+    console.log(
+      "URL",
+      `https://api.github.com/repos/${{ owner }}/${{ repo }}/actions/runs/${{
+        run_id }}/attempts/${{ attempt_number }}`
+    );
 
     const Octokit = new Octokit({
       auth: `${{ token }}`,
     });
 
-    await Octokit.request(
-      `GET /repos/${{ owner }}/${{ repo }}/actions/runs/${{ run_id }}`,
-      {
-        owner,
-        repo,
-        run_id,
-      }
-    );
     //https://api.github.com/repos/{owner}/{repo}/actions/runs/{run_id}/attempts/{attempt_number}
     //headers "Accept: application/vnd.github.v3+json"
 
@@ -90,10 +86,6 @@ async function run() {
     core.setOutput("conclusion", conclusion);
     core.setOutput("started_at", started_at);
     core.setOutput("completed_at", completed_at);
-
-    core.startGroup("Logging status");
-    core.setOutput(JSON.stringify(data, null, "\t"));
-    core.endGroup();
 
     core.startGroup("Logging github");
     console.log(JSON.stringify(github, null, "\t"));
