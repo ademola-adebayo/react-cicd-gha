@@ -45,8 +45,8 @@ async function run() {
       method: "get",
       url: `https://api.github.com/repos/${owner}/${repo}/actions/runs/${run_id}/attempts/${attempt_number}`,
       headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
+        // Authorization: `Bearer ${token}`,
+        // "Content-Type": "application/json",
         Accept: "application/vnd.github.v3+json",
       },
     };
@@ -77,7 +77,7 @@ async function run() {
     core.setOutput("completed_at", completed_at);
 
     core.startGroup("Logging status");
-    core.setOutput("response", JSON.stringify(data, null, "\t"));
+    core.setOutput("response", JSON.stringify(response.data, null, "\t"));
     core.endGroup();
 
     core.startGroup("Logging github");
