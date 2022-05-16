@@ -1,7 +1,12 @@
 name: Get workflow information
 
 on:
+  push:
+    branches:
+      - workflow
   pull_request:
+    branches:
+      - workflow
 
 permissions:
   actions: read
@@ -21,9 +26,9 @@ jobs:
         uses: ./.github/actions/custom
         id: query
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GHA_TOKEN }}
           owner: ${{ github.repository_owner }}
-          repo: ${{ github.repository }}
+          repo: ${{ github.event.repository.name }}
           run_id: ${{ github.run_id }}
           attempt_number: ${{ github.run_attempt }}
 

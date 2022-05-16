@@ -1,9 +1,20 @@
 const core = require("@actions/core");
 const github = require("@actions/github");
+const axios = require("axios");
+
 const { Octokit } = require("@octokit/core");
 
 const { context } = require("@actions/github");
 
+// const sendGetRequest = async () => {
+//   try {
+
+//       console.log(resp.data);
+//   } catch (err) {
+//       // Handle Error Here
+//       console.error(err);
+//   }
+// };
 async function run() {
   try {
     /**
@@ -30,8 +41,18 @@ async function run() {
     //   run_id,
     //   attempt_number,
     // });
+    const config = {
+      method: "get",
+      url: `https://api.github.com/repos/${owner}/${repo}/actions/runs/${run_id}/attempts/${attempt_number}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        Accept: "application/vnd.github.v3+json",
+      },
+    };
+    const resp = await axios(config);
 
-    const { data } = await octokit.rest.actions.getWorkflowRunAttempt({
+    const response = await octokit.rest.actions.getWorkflowRunAttempt({
       owner,
       repo,
       run_id,
@@ -43,13 +64,21 @@ async function run() {
     console.log("RUN ID =>", run_id);
     console.log("ATTEMPT NUMBER =>", attempt_number);
 
+    //https://api.github.com/repos/{owner}/{repo}/actions/runs/{run_id}/attempts/{attempt_number}
+    //headers "Accept: application/vnd.github.v3+json"
+
+    console.log("API CALL =>", JSON.stringify(resp.data, null, "\t"));
+    const { data } = resp;
     console.log(JSON.stringify(data, null, "\t"));
 
     // core.setOutput("status", status);
-    core.setOutput("conclusion", data.conclusion);
-    core.setOutput("started_at", data.started_at);
-    core.setOutput("completed_at", completed_at.toTimeString());
-    core.setOutput("response", JSON.stringify(data));
+    core.setOutput("conclusion", conclusion);
+    core.setOutput("started_at", started_at);
+    core.setOutput("completed_at", completed_at);
+
+    core.startGroup("Logging status");
+    core.setOutput("response", JSON.stringify(data, null, "\t"));
+    core.endGroup();
 
     core.startGroup("Logging github");
     console.log(JSON.stringify(github, null, "\t"));
