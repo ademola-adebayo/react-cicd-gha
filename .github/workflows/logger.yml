@@ -57,7 +57,7 @@ jobs:
 
       - name: Display Output 
         run: |
-          echo "RESULT => ${{ steps.display.outputs.*.status }}"
+          echo "RESULT => ${{ steps.display.outputs.*[0].status }}"
 
       # - name: Workflow Job API
       #   id: callout
