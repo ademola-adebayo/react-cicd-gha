@@ -43,7 +43,9 @@ async function run() {
     // });
     const config = {
       method: "get",
-      url: `https://api.github.com/repos/${owner}/${repo}/actions/runs/${run_id}/attempts/${attempt_number}`,
+      url: `https://api.github.com/repos/${owner}/${{ repo }}/actions/runs/${{
+        run_id,
+      }}/attempts/${{ attempt_number }}`,
       headers: {
         // Authorization: `Bearer ${token}`,
         // "Content-Type": "application/json",
@@ -65,7 +67,7 @@ async function run() {
     console.log("ATTEMPT NUMBER =>", attempt_number);
     console.log(
       "URL",
-      `https://api.github.com/repos/${owner}/${repo}/actions/runs/${run_id}/attempts/${attempt_number}`
+      `https://api.github.com/repos/${{ owner }}/${{ repo }}/actions/runs/${{ run_id }}/attempts/${{ attempt_number }}`
     );
 
     //https://api.github.com/repos/{owner}/{repo}/actions/runs/{run_id}/attempts/{attempt_number}
