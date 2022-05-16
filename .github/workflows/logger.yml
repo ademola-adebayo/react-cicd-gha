@@ -56,7 +56,7 @@ jobs:
 
       - name: Cough out
         run: |
-          echo "work in progress"
+          echo "RESULT => ${{ steps.gotit.outputs.*}}"
 
       # - name: Workflow Job API
       #   id: callout
